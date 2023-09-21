@@ -13,11 +13,6 @@
 	
 	<!-- workbook 계정 -->
 	<entry key="user">workbook</entry>
-	<entry key="pw">workbook1234</entry>
+	<entry key="password">workbook1234</entry>
 	
 </properties>
-
-
-
-
-

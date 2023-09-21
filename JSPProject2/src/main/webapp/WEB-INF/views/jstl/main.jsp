@@ -50,8 +50,24 @@
 	<!-- *** Controller -> Service -> DAO -> DB -> 
 			DAO -> Service (+ DTO) -> Controller *** -->
 	<a href="student/selectAll">workbook에서 학생 전체 조회하기</a>
+	
+	<br>
 
 
+	<%-- 
+		건축공학과인 학생만 찾아라
+		student/selectArch
+		selectArch.jsp
+	--%>
+	
+	<a href="student/selectArch">workbook에서 건축공학과 학생 조회하기</a>
+
+	<p>[학과 검색]</p>
+	<form action ="student/selectOne" method="post">
+		<input type="text" name="deptName">
+		<button>찾기</button>
+	</form>
+	
 
 	<h1>JSTL(Jsp Standard Tag Library, JSP 표준 태그 라이브러리)</h1>
 	
