@@ -78,13 +78,13 @@
             			<article class="login-area">
             			
             				<a href="#">
-            					<img width=50px; src="/resources/images/user.png">
+            					<img src="/resources/images/user.png" id="memberProfile">
             				</a>
             				
             				<div class="my-info">
             					<div>
-            						<a href="#" id="nickname"></a>
-            						<a href="#" id="logout">로그아웃</a>
+            						<a href="#" id="nickname">${sessionScope.loginMember.memberNickname}</a>
+            						<a href="/member/logout" id="logoutBtn">로그아웃</a>
             					</div>
             					
             					<p></p>

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<link rel="stylesheet" href="/resources/css/main-style.css">
+
 <header>
 
 	<section>
@@ -11,10 +13,10 @@
 
 	<section>
 		<section class="search-area">
-			<form action="#" name="search-form">
+			<form action="/search" method="GET" name="search-form">
 				<fieldset>
 					<input type="search" id="query" name="query"
-					autocomplete="off" placeholder="검색어를 입력해주세요."
+					autocomplete="off" placeholder="회원을 닉네임으로 검색해주세요."
 					>
 					<button id="searchBtn" class="fa-solid fa-magnifying-glass"></button>
 				</fieldset>
