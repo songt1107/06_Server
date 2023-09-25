@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <servers>
-  <server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers/server1-config" deployDir="wtpwebapps" hostname="localhost" id="server1" name="server1" runtime-id="Apache Tomcat v9.0" server-type="org.eclipse.jst.server.tomcat.90" server-type-id="org.eclipse.jst.server.tomcat.90" start-timeout="45" stop-timeout="15" testEnvironment="true" timestamp="1">
-    <list key="modules" value0="JSPProject1::org.eclipse.jst.jee.server:JSPProject1::jst.web::4.0"/>
+  <server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers/server1-config" deployDir="wtpwebapps" hostname="localhost" id="server1" name="server1" runtime-id="Apache Tomcat v9.0" server-type="org.eclipse.jst.server.tomcat.90" server-type-id="org.eclipse.jst.server.tomcat.90" start-timeout="45" stop-timeout="15" testEnvironment="true" timestamp="2">
+    <list key="modules" value0="JSPProject1::org.eclipse.jst.jee.server:JSPProject1::jst.web::4.0" value1="ServletProject::org.eclipse.jst.jee.server:ServletProject::jst.web::4.0"/>
   </server>
   <server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers/server2-config" deployDir="wtpwebapps" hostname="localhost" id="server2" name="server2" runtime-id="Apache Tomcat v9.0" server-type="org.eclipse.jst.server.tomcat.90" server-type-id="org.eclipse.jst.server.tomcat.90" start-timeout="45" stop-timeout="15" testEnvironment="true" timestamp="1">
     <list key="modules" value0="JSPProject2::org.eclipse.jst.jee.server:JSPProject2::jst.web::4.0"/>
   </server>
-  <server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers/ServerBoard-config" deployDir="wtpwebapps" hostname="localhost" id="ServerBoard" name="ServerBoard" runtime-id="Apache Tomcat v9.0" server-type="org.eclipse.jst.server.tomcat.90" server-type-id="org.eclipse.jst.server.tomcat.90" start-timeout="45" stop-timeout="15" testEnvironment="true" timestamp="1">
+  <server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers/ServerBoard-config" deployDir="wtpwebapps" hostname="localhost" id="ServerBoard" name="ServerBoard" runtime-id="Apache Tomcat v9.0" server-type="org.eclipse.jst.server.tomcat.90" server-type-id="org.eclipse.jst.server.tomcat.90" start-timeout="45" stop-timeout="15" testEnvironment="true" timestamp="3">
     <list key="modules" value0="boardProject::org.eclipse.jst.jee.server:boardProject::jst.web::4.0"/>
   </server>
   <server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers/TodoList-config" deployDir="wtpwebapps" hostname="localhost" id="TodoList" name="TodoList" runtime-id="Apache Tomcat v9.0" server-type="org.eclipse.jst.server.tomcat.90" server-type-id="org.eclipse.jst.server.tomcat.90" start-timeout="45" stop-timeout="15" testEnvironment="true" timestamp="1">
     <list key="modules" value0="TodoList::org.eclipse.jst.jee.server:TodoList::jst.web::4.0"/>
+  </server>
+  <server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers/Servlet-config" deployDir="wtpwebapps" hostname="localhost" id="Servlet" name="Servlet" runtime-id="Apache Tomcat v9.0" server-type="org.eclipse.jst.server.tomcat.90" server-type-id="org.eclipse.jst.server.tomcat.90" start-timeout="45" stop-timeout="15" testEnvironment="true" timestamp="1">
+    <list key="modules" value0="ServletProject::org.eclipse.jst.jee.server:ServletProject::jst.web::4.0"/>
   </server>
 </servers>
