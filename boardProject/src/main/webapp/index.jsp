@@ -38,7 +38,7 @@
             	
             </section>
 
-            <!-- 아이디/비밀전호/로그인버튼 영역-->
+            <!-- 아이디/비밀번호/로그인버튼 영역-->
             <section class="content-2">
             
             	<c:choose>

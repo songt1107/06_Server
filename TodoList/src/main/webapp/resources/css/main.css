@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'TTCrownMychewR';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/TTCrownMychewR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ramche';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/Ramche.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.todoLogin {
+	font-family: 'TTCrownMychewR';	
+	margin-left: 32px;
+}
+
+.id-pw-area {
+	font-family: 'Ramche';
+	border-radius: 25px;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.buttonarea {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 180px;
+}
+
+#loginbutton {
+	width: 180px;
+	height: 30px;
+}
+
+.signup {
+	color: black;
+}
