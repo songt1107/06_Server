@@ -23,7 +23,7 @@ public class JDBCTemplate {
 				Properties prop = new Properties();
 				
 				String filePath
-					= JDBCTemplate.class.getResource("/edu/kh/project/sql/driver.xml").getPath();
+					= JDBCTemplate.class.getResource("/edu/kh/todo/sql/driver.xml").getPath();
 				
 				System.out.println(filePath);
 				

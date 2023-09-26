@@ -12,9 +12,13 @@
     font-style: normal;
 }
 
-.todoLogin {
+.todoFont {
 	font-family: 'TTCrownMychewR';	
-	margin-left: 32px;
+	font-size: 50px;
+}
+
+.textFont {
+	font-family: 'Ramche';
 }
 
 .id-pw-area {

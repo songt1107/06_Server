@@ -19,8 +19,9 @@ public class MemberDAO {
 	
 	public MemberDAO() {
 		
+		prop = new Properties();
+		
 		try {
-			prop = new Properties();
 			
 			String filePath 
 				= MemberDAO.class.getResource("/edu/kh/todo/sql/member-sql.xml").getPath();
@@ -56,15 +57,16 @@ public class MemberDAO {
 			
 			if(rs.next()) {
 				
-				loginMember = new Member();
+				loginMember = new Member();   
 				
-				loginMember.setMemberNo( rs.getInt(1) );
-				loginMember.setMemberId( rs.getString(2) );
-				loginMember.setMemberPw( rs.getString(3) );
-				loginMember.setMemberNickname( rs.getString(4) );
-				loginMember.setEnrollDate( rs.getString(5) );
+				loginMember.setMemberNo( rs.getInt("MEMBER_NO") );
+				loginMember.setMemberId( rs.getString("MEMBER_ID") );
+				loginMember.setMemberPw( rs.getString("MEMBER_PW") );
+				loginMember.setMemberNickname( rs.getString("MEMBER_NICKNAME") );
+				loginMember.setEnrollDate( rs.getString("ENROLL_DATE") );
 				
 			}
+			
 			
 		} finally {
 			close(rs);
@@ -74,10 +76,45 @@ public class MemberDAO {
 		
 		return loginMember;
 	}
-
-	public Member signUp(Connection conn, String query) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	
+	public Member signup(Connection conn, String inputId, String inputPw, String inputNickname) throws Exception{
+		
+		Member member = null;
+		
+		try {
+			
+			String sql = prop.getProperty("signup");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, inputId);
+			pstmt.setString(2, inputPw);
+			pstmt.setString(3, inputNickname);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				member = new Member();
+				
+				member.setMemberNo( rs.getInt(1) );
+				member.setMemberId( rs.getString(2) );
+				member.setMemberPw( rs.getString(3) );
+				member.setMemberNickname( rs.getString(4) );
+				member.setEnrollDate( rs.getString(5) );
+				member.setMemberDeleteFlag( rs.getString(6) );
+				
+			}
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		return member;
+			
+		}
+		
+		
 	}
-
-}

@@ -14,21 +14,18 @@
 </head>
 <body>
 	
-	<div class="container">
+	<div class="content">
 	
 		
-				<section class="content">
+			<section class="content">
 		            
-		            	<c:choose>
+		            <c:choose>
 		            	
-		            		<%-- 로그인이 안되었을때 --%>
-		            		<%-- EL empty : 비어있거나 null이면 true --%>
-		            		
 		            		<c:when test="${empty sessionScope.loginMember}">
 				            	<form action="/member/login" method="post" name="login-form" id="loginFrm">
 				                    
 				                	<div>
-									<h1 class="todoLogin">투 두 리스트 로그인</h1>
+									<h1 class="todoFont">투 두 리스트 로그인</h1>
 									</div>
 							
 				                    <fieldset class="id-pw-area">
@@ -38,26 +35,46 @@
 				                            <p>패스워드</p>
 				                            <input type="password" name="inputPw" placeholder="패스워드">
 				                        </section>
+				                        
 				                        <br>
+				                        
 				                        <section class="buttonarea">
 				                            <button id="loginbutton">로그인</button> <br>
-				                            <a href="/signup" class="signup">회원가입</a>
 				                        </section>
+				                            <a href="/signup" class="signup">회원가입</a>
 				                    </fieldset>
-				
+				                        
 				                </form>
 		            		</c:when>
 		            		
+		            		
 		            		<%-- 로그인이 되었을때 --%>
 		            		<c:otherwise>
-		            			<p>유저일의 투두리스트</p>
-		            		
+		            			<h1 class="todoFont">${loginMember.getMemberNickname()}의 투 두 리스트</h1>
+		            			
+		            			<div>
+		            			111
+		            			</div>
+		            			<form action="/member/logout" method="get" name="logout-form" id="logoutFrm">
+			            			<section class="buttonarea">
+			            				<button id="logoutbutton">로그아웃</button> <br>
+			            			</section>
+		            			</form>
 		            		
 		            		</c:otherwise>
 		            		
-		            	</c:choose>
+		            </c:choose>
 		            	
-				</section>
+		        <c:if test="${not empty sessionScope.message}">
+
+					<script>
+						alert('${message}') // ${message}
+					</script>
+				
+					<c:remove var="message" scope="session"/>
+
+				</c:if>
+			</section>
 			
 	</div>
             
