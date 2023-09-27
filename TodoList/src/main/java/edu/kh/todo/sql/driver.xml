@@ -13,6 +13,6 @@
 	
 	<!-- workbook 계정 -->
 	<entry key="user">todoList</entry>
-	<entry key="password">todoList1234</entry>
+	<entry key="pw">todoList1234</entry>
 	
 </properties>

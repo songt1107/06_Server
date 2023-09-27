@@ -1,90 +1,104 @@
-// 유효성 검사 객체
 const checkObj = {
-    "inputId" : false, // 아이디
-    "inputPw" : false, // 비밀번호
-    "inputPwConfirm" : false, // 비번확인
+    "inputId" : false,
+    "inputPw" : false,
+    "checkInputPw" : false,
     "inputNickname" : false
 }
 
-document.getElementById("check").addEventListener("click", function() {
-            // 아이디 중복 확인을 위해 새로고침하여 서버로 요청 보냄
-            window.location.href = "${pageContext.request.contextPath}/signup?inputId=" + document.getElementById("userId").value;
-        });
+let inputId = document.getElementById("inputId");
+let inputPw = document.getElementById("inputPw");
+let checkInputPw = document.getElementById("checkInputPw");
+let inputNickname = document.getElementById("inputNickname");
 
-document.getElementById("inputId").addEventListener("change", function() {
 
-    const regExp = /^[a-z][\w-_]{5,13}$/;
-                // 소문자시작(1) + 나머지(5~13) = 6~14글자
+inputId.addEventListener("change", () => {
 
-    if(regExp.test(this.value)) {
-        this.style.backgroundColor = "springgreen";
-        this.style.color = "black";
+    const regExp = /^[a-z][a-zA-Z0-9]{5,13}$/;
+
+    if (regExp.test(inputId.value)) {
+        inputId.style.backgroundColor = "green";
+        inputId.style.color = "white";
         checkObj.inputId = true;
     } else {
-        this.style.backgroundColor = "red";
-        this.style.color = "white";
+        inputId.style.backgroundColor = "red";
+        inputId.style.color = "white";
         checkObj.inputId = false;
     }
 
-
 });
 
-const inputPw = document.getElementById("inputPw");
-const inputPwConfirm = document.getElementById("inputPwConfirm");
+checkInputPw.addEventListener("keyup", () => {
 
-inputPwConfirm.addEventListener("keyup", function() {
-
-    if(inputPw.value.length == 0) {
-        this.value = "";
+    if(inputPw.value.length == 0){
+        checkInputPw.value = "";
         alert("비밀번호를 입력해주세요");
         inputPw.focus();
+    }
+
+});
+
+checkInputPw.addEventListener("keyup", () => {
+   
+    if((inputPw.value == checkInputPw.value) && inputPw.value.length != 0){
+        pwMsg.innerText = "비밀번호 일치";
+        pwMsg.style.color = "green";
+        pwMsg.classList.add("confirm");
+        pwMsg.classList.remove("error");
+        checkObj.inputPw = true;
+        checkObj.checkInputPw = true;
+    } else {
+        pwMsg.innerText = "비밀번호 불일치";
+        pwMsg.style.color = "red";
+        pwMsg.classList.add("error");
+        pwMsg.classList.remove("confirm");
         checkObj.inputPw = false;
+        checkObj.checkInputPw = false;
     }
+
 });
 
-const pwMessage = document.getElementById("pwMessage");
+inputNickname.addEventListener("change", () => {
 
-inputPw.addEventListener("keyup", function() {
+    const regExp = /^[가-힣]{2,5}$/;
 
-    if( (inputPw.value == inputPwConfirm.value) && inputPw.value.length != 0 ) {
-        pwMessage.innerText = "비밀번호 일치";
-        pwMessage.classList.add("confirm");
-        pwMessage.classList.remove("error");
-        checkObj.inputPw = true;
-        checkObj.inputPwConfirm = true;
-    }else {
-        pwMessage.innerText="비밀번호 불일치";
-        pwMessage.classList.add("error");
-        pwMessage.classList.remove("confirm");
-        checkObj.inputPwConfirm = false;
+    if(regExp.test(inputNickname.value)){
+        nicknameMsg.innerText = "정상입력";
+        nicknameMsg.style.color = "green";
+        nicknameMsg.classList.add("confirm");
+        nicknameMsg.classList.remove("error");
+        checkObj.inputNickname = true;
+    }else{
+        nicknameMsg.innerText = "한글만 입력하세요";
+        nicknameMsg.style.color = "red";
+        nicknameMsg.classList.add("error");
+        nicknameMsg.classList.remove("confirm");
+        checkObj.inputNickname = false;
     }
-});
 
-inputPwConfirm.addEventListener("keyup", function() {
-    if( (inputPw.value == inputPwConfirm.value) && inputPw.value.length != 0 ) {
-        pwMessage.innerText = "비밀번호 일치";
-        pwMessage.classList.add("confirm");
-        pwMessage.classList.remove("error");
-        checkObj.inputPw = true;
-        checkObj.inputPwConfirm = true;
-    }else {
-        pwMessage.innerText="비밀번호 불일치";
-        pwMessage.classList.add("error");
-        pwMessage.classList.remove("confirm");
-        checkObj.inputPwConfirm = false;
-    }
 });
 
 
-function validate() {
+function validate(){
 
-    for(let key in checkObj) {
-        if( !checkObj[key] ) {
+    for (let key in checkObj) {
+        if ( !checkObj[key] ){
             return false;
         }
     }
 
-    alert("회원가입 완료");
     return true;
+}
 
+
+function pwCheck(){
+
+    let pwForDelete = document.getElementById("pwForDelete");
+    let checkPwForDelete = document.getElementById("checkPwForDelete");
+
+    if((pwForDelete.value == checkPwForDelete.value) && pwForDelete.value.length != 0){
+        confirm("정말 탈퇴하시겠습니까?");
+    }else{
+        alert("비밀번호를 잘못 입력하셨습니다.");
+        return false;
+    }
 }

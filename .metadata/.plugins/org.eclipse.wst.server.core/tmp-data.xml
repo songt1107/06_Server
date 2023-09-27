@@ -3,6 +3,6 @@
   <temp-directory age="0" key="ServerBoard" path="tmp2" recycle="false"/>
   <temp-directory age="0" key="Servlet" path="tmp4" recycle="false"/>
   <temp-directory age="0" key="server2" path="tmp1" recycle="false"/>
+  <temp-directory age="0" key="TodoServer" path="tmp3" recycle="false"/>
   <temp-directory age="0" key="server1" path="tmp0" recycle="false"/>
-  <temp-directory age="0" key="TodoList" path="tmp3" recycle="false"/>
 </temp-directories>

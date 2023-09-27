@@ -12,6 +12,30 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Dovemayo_gothic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Dovemayo_gothic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.todoTable{
+	font-size: 30px;
+}
+
+.todoMemo{
+	font-family: 'Dovemayo_gothic';
+}
+
+p, button{
+	font-family: 'Ramche';
+}
+
+button{
+	background-color: transparent;
+	font-size: 20px;
+}
+
 .todoFont {
 	font-family: 'TTCrownMychewR';	
 	font-size: 50px;
@@ -19,6 +43,7 @@
 
 .textFont {
 	font-family: 'Ramche';
+	font-size: 22px;
 }
 
 .id-pw-area {
@@ -48,4 +73,103 @@
 
 .signup {
 	color: black;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+    font-weight: bold;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginContainer{
+    width: 280px;
+    height: 300px;
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    
+    justify-content: center;
+    align-items: center;
+}
+
+.signupContainer{
+    width: 380px;
+    height: 550px;
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    
+    justify-content: center;
+    align-items: center;
+}
+
+input{
+    padding: 5px;
+    height: 30px;
+}
+
+.loginBtn, .signupBtn, .insertBtn, .gosignBtn{
+    width: 80px;
+    height: 30px;
+    margin: 30px 0;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+}
+
+a{
+	text-decoration-line: none;
+	width: 100px;
+	font-size: 20px;
+    height: 50px;
+    margin: 30px 0;
+    cursor: pointer;
+    border: none;
+}
+
+#deleteAll{
+	color: rgb(255, 128, 0);
+}
+
+#insertBtn{
+	color: rgb(0, 0, 255);
+}
+
+#logoutBtn{
+	color: rgb(255, 128, 255);
+}
+
+#deleteMem{
+	color: rgb(0, 128, 0);
+}
+
+.todoBtn{
+	font-size: 16px;
+	width: 45px;
+    height: 30px;
+    
+    cursor: pointer;
+    border: none;
+}
+
+.a, .todoBtn > a {
+	font-family: 'Ramche';
+	text-decoration: none;
+	color: rgb(255, 0, 128);
 }

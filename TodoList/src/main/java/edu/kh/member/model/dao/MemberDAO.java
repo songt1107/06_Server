@@ -7,114 +7,180 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Properties;
 
-import static edu.kh.todo.common.JDBCTemplate.*;
 import edu.kh.member.model.dto.Member;
 
+import static edu.kh.todo.common.JDBCTemplate.*;
+
 public class MemberDAO {
-	
+
 	private Statement stmt;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	private Properties prop;
-	
-	public MemberDAO() {
-		
-		prop = new Properties();
-		
+
+	public MemberDAO(){
+
 		try {
-			
-			String filePath 
-				= MemberDAO.class.getResource("/edu/kh/todo/sql/member-sql.xml").getPath();
-			
+
+			prop = new Properties();
+			String filePath = MemberDAO.class.getResource("/edu/kh/todo/sql/member-sql.xml").getPath();
 			prop.loadFromXML(new FileInputStream(filePath));
-			
-		} catch(Exception e) {
+
+		}catch(Exception e){
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-	/** 로그인 DAO
+
+	/** 회원가입 DAO
 	 * @param conn
-	 * @param inputEmail
+	 * @param inputId
 	 * @param inputPw
-	 * @return
+	 * @param inputNickname
+	 * @return result
 	 */
-	public Member login(Connection conn, String inputId, String inputPw) throws Exception{
-		
-		Member loginMember = null;
-		
+	public int signup(Connection conn, String inputId, String inputPw, String inputNickname) throws Exception{
+
+		int result = 0;
+
 		try {
-			
-			String sql = prop.getProperty("login");
-			
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, inputId);
-			pstmt.setString(2, inputPw);
-			
-			rs = pstmt.executeQuery();
-			
-			if(rs.next()) {
-				
-				loginMember = new Member();   
-				
-				loginMember.setMemberNo( rs.getInt("MEMBER_NO") );
-				loginMember.setMemberId( rs.getString("MEMBER_ID") );
-				loginMember.setMemberPw( rs.getString("MEMBER_PW") );
-				loginMember.setMemberNickname( rs.getString("MEMBER_NICKNAME") );
-				loginMember.setEnrollDate( rs.getString("ENROLL_DATE") );
-				
-			}
-			
-			
-		} finally {
-			close(rs);
-			close(pstmt);
-		}
-		
-		
-		return loginMember;
-	}
-	
-	
-	public Member signup(Connection conn, String inputId, String inputPw, String inputNickname) throws Exception{
-		
-		Member member = null;
-		
-		try {
-			
+
 			String sql = prop.getProperty("signup");
-			
+
 			pstmt = conn.prepareStatement(sql);
-			
+
 			pstmt.setString(1, inputId);
 			pstmt.setString(2, inputPw);
 			pstmt.setString(3, inputNickname);
-			
+
+			result = pstmt.executeUpdate();
+
+		}finally {
+
+			close(pstmt);
+
+		}
+
+		return result;
+	}
+
+	/** 로그인 DAO
+	 * @param conn
+	 * @param inputId
+	 * @param inputPw
+	 * @return member
+	 */
+	public Member login(Connection conn, String inputId, String inputPw) throws Exception {
+
+		Member member = new Member();
+
+		try {
+
+			String sql = prop.getProperty("login");
+
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, inputId);
+			pstmt.setString(2, inputPw);
+
 			rs = pstmt.executeQuery();
-			
+
 			if(rs.next()) {
-				member = new Member();
-				
-				member.setMemberNo( rs.getInt(1) );
-				member.setMemberId( rs.getString(2) );
-				member.setMemberPw( rs.getString(3) );
-				member.setMemberNickname( rs.getString(4) );
-				member.setEnrollDate( rs.getString(5) );
-				member.setMemberDeleteFlag( rs.getString(6) );
-				
+
+				int memberNo = rs.getInt("MEMBER_NO");
+				String memberId = rs.getString("MEMBER_ID");
+				String memberPw = rs.getString("MEMBER_PW");
+				String memberNickname = rs.getString("MEMBER_NICKNAME");
+				String enrollDate = rs.getString("ENROLL_DATE");
+
+				member.setMemberNo(memberNo);
+				member.setMemberId(memberId);
+				member.setMemberPw(memberPw);
+				member.setMemberNickname(memberNickname);
+				member.setEnrollDate(enrollDate);
 			}
+
+
+		}finally {
+			close(rs);
+			close(pstmt);
+
+		}
+
+		return member;
+	}
+
+	/** 회원 조회 DAO
+	 * @param conn
+	 * @param inputId
+	 * @return member
+	 */
+	public Member select(Connection conn, String inputId) throws Exception {
+
+		Member member = new Member();
+
+		try {
+
+			String sql = prop.getProperty("select");
+
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setString(1, inputId);
+
+			rs= pstmt.executeQuery();
+					
+			if(rs.next()) {
+
+				int memberNo = rs.getInt("MEMBER_NO");
+				String memberId = rs.getString("MEMBER_ID");
+				String memberPw = rs.getString("MEMBER_PW");
+				String memberNickname = rs.getString("MEMBER_NICKNAME");
+				String enrollDate = rs.getString("ENROLL_DATE");
+
+				member.setMemberNo(memberNo);
+				member.setMemberId(memberId);
+				member.setMemberPw(memberPw);
+				member.setMemberNickname(memberNickname);
+				member.setEnrollDate(enrollDate);
+			}
+
+		}finally {
 			
-		} finally {
+			close(rs);
+			close(pstmt);
+			
+		}
+
+		return member;
+
+	}
+
+	/** 회원 탈퇴 DAO
+	 * @param conn
+	 * @param memberNo
+	 * @param pwForDelete
+	 * @return result
+	 */
+	public int deleteMem(Connection conn, int memberNo, String pwForDelete) throws Exception{
+		
+		int result = 0;
+		
+		try {
+
+			String sql = prop.getProperty("deleteMem");
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, memberNo);
+			pstmt.setString(2, pwForDelete);
+			
+			result = pstmt.executeUpdate();
+			
+		}finally {
 			close(rs);
 			close(pstmt);
 		}
-		
-		
-		return member;
-			
-		}
-		
-		
+		return result;
 	}
+
+}
